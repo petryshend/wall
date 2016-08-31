@@ -3,10 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Record;
+use AppBundle\Form\RecordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,10 +36,8 @@ class WallController extends Controller
     {
         $record = new Record();
 
-        $form = $this->createFormBuilder($record)
-            ->add('content', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Record'])
-            ->getForm();
+        $form = $this->createForm(RecordType::class, $record);
+        $form->add('save', SubmitType::class);
 
         $form->handleRequest($request);
 
