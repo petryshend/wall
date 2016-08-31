@@ -4,10 +4,13 @@
 
   <h1>This is wall</h1>
 
-  <ul>
-    {% for record in records %}
-      <li>{{ record.content }}</li>
-    {% endfor %}
-  </ul>
+  {% for record in records %}
+    <div class="quote-container">
+      <blockquote class="note active">
+        {{ record.content }}
+      </blockquote>
+    </div>
+  {% endfor %}
+
 
 {% endblock %}
