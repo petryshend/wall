@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
   <h1>This is wall</h1>
+
+  {% for record in records %}
+    <p>{{ record.content }}</p>
+  {% endfor %}
+
 {% endblock %}
