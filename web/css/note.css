@@ -25,3 +25,11 @@
 .active {
     background: rgba(255, 251, 22, 0.52);
 }
+
+.inactive {
+    background: rgb(215, 215, 215);
+}
+
+.note input[type="submit"] {
+    width: 120px;
+}

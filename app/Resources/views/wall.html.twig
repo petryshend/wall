@@ -2,13 +2,18 @@
 
 {% block body %}
 
-  <h1>This is wall</h1>
-
   {% for record in records %}
     <div class="quote-container">
-      <blockquote class="note active">
+      <div class="note {{ record.active ? 'active' : 'inactive' }}">
         {{ record.content }}
-      </blockquote>
+        <form method="post" action="{{ path('record_toggle_active', {'id': record.id}) }}">
+          <input
+              type="submit"
+              class="btn btn-{{ record.active ? 'primary' : 'default' }} btn-lg pull-right"
+              value="{{ record.active ? 'Mark as inactive' : 'Mark as active' }}"
+          >
+        </form>
+      </div>
     </div>
   {% endfor %}
 

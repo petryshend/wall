@@ -57,4 +57,31 @@ class WallController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route(
+     *     "/record/{id}/toggle-active",
+     *     name="record_toggle_active",
+     *     methods={"POST"},
+     *     requirements={"id": "\d+"}
+     *     )
+     * @param int $id
+     * @return Response
+     */
+    public function toggleActiveAction(int $id): Response
+    {
+        $record = $this->getDoctrine()->getRepository('AppBundle:Record')->find($id);
+
+        if ($record === null) {
+            throw $this->createNotFoundException('No record found with id ' . $id);
+        }
+
+        $record->setActive(!$record->getActive());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($record);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
+    }
 }
