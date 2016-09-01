@@ -1,0 +1,19 @@
+<div class="quote-container">
+  <div class="note {{ record.active ? 'active' : 'inactive' }}">
+    {{ record.content }}
+    <form method="post" action="{{ path('record_toggle_active', {'id': record.id}) }}">
+      <input
+          type="submit"
+          class="btn btn-{{ record.active ? 'primary' : 'default' }} btn-lg pull-right"
+          value="{{ record.active ? 'Mark as inactive' : 'Mark as active' }}"
+      >
+    </form>
+    <form method="post" action="{{ path('record_delete', {'id': record.id}) }}">
+      <input
+          type="submit"
+          class="btn btn-danger pull-right"
+          value="Delete"
+      >
+    </form>
+  </div>
+</div>
