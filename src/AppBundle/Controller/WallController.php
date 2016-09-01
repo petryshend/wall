@@ -17,7 +17,7 @@ class WallController extends Controller
      */
     public function indexAction(): Response
     {
-        $records = $this->getDoctrine()->getRepository('AppBundle:Record')->findAll();
+        $records = $this->getDoctrine()->getRepository('AppBundle:Record')->findBy([], ['active' => 'DESC']);
 
         return $this->render(
             'wall.html.twig',
