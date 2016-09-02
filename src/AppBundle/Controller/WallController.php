@@ -6,7 +6,6 @@ use AppBundle\Entity\Record;
 use AppBundle\Form\RecordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,16 +19,23 @@ class WallController extends Controller
         $records = $this->getDoctrine()->getRepository('AppBundle:Record')
             ->findBy([], ['active' => 'DESC', 'id' => 'DESC']);
 
+        $form = $this->createForm(RecordType::class, new Record());
+
         return $this->render(
             'wall.html.twig',
             [
-                'records' => $records
+                'records' => $records,
+                'form' => $form->createView(),
             ]
         );
     }
 
     /**
-     * @Route("/record/create", name="record_create", methods={"GET", "POST"})
+     * @Route(
+     *     "/record/create",
+     *     name="record_create",
+     *     methods={"POST"}
+     * )
      * @param Request $request
      * @return Response
      */
@@ -38,8 +44,6 @@ class WallController extends Controller
         $record = new Record();
 
         $form = $this->createForm(RecordType::class, $record);
-        $form->add('save', SubmitType::class);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,16 +51,9 @@ class WallController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($record);
             $em->flush();
-
-            return $this->redirectToRoute('home');
         }
 
-        return $this->render(
-            'record/create.html.twig',
-            [
-                'form' => $form->createView(),
-            ]
-        );
+        return $this->redirectToRoute('home');
     }
 
     /**
