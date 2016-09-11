@@ -7,40 +7,9 @@
     Create new record
   </button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Create new record</h4>
-        </div>
-        <div class="modal-body">
-          {{ form_start(form, {
-            'action': path('record_create'),
-            'attr': {'id': 'new-record-form'}
-          }) }}
-          <div class="form-group">
-            {{ form_label(form.content) }}
-            {{ form_errors(form.content) }}
-            {{ form_widget(form.content,
-              {'attr': {
-                'class': 'form-control',
-                'autocomplete': 'off'
-              }}
-            ) }}
-          </div>
-          {{ form_end(form) }}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="createRecordButton" type="button" class="btn btn-primary">Create record</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <a href="{{ path('logout') }}" class="btn btn-default">Logout</a>
+
+  {% include '_partial/new_note_modal.html.twig' with {'form': form} %}
 
   {% for record in records %}
     {% include '_partial/note.html.twig' with {'record': record} %}
