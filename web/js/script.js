@@ -13,4 +13,14 @@ $(function() {
     $('#myModal').on('shown.bs.modal', function() {
         $('#record_content').focus();
     });
+
+    $('#record_content').keypress(function (event) {
+        if (event.keyCode === 13 && event.shiftKey) {
+            $(this).val($(this).val());
+            event.stopPropagation();
+        } else if (event.keyCode === 13) {
+            $(this.closest('form').submit());
+            event.stopPropagation();
+        }
+    });
 });

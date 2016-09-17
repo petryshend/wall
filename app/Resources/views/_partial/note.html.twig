@@ -1,6 +1,6 @@
 <div class="quote-container">
   <div class="note {{ record.active ? 'active' : 'inactive' }}">
-    {{ record.content|nl2br }}
+    {{ record.content|markdown }}
     <div class="created-at">
       {{ record.createdAt|date }}
     </div>
