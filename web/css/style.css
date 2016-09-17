@@ -15,4 +15,13 @@
 .close-thick:hover {
     text-decoration: none;
     color: #ac2925;
+    transform: scale(1.1, 1.1);
+}
+
+.created-at {
+    font: 12px/100% arial, sans-serif;
+    color: #5e5e5e;
+    position: absolute;
+    right: 50px;
+    top: 5px;
 }

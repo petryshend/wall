@@ -1,6 +1,9 @@
 <div class="quote-container">
   <div class="note {{ record.active ? 'active' : 'inactive' }}">
     {{ record.content|nl2br }}
+    <div class="created-at">
+      {{ record.createdAt|date }}
+    </div>
     <form method="post" action="{{ path('record_toggle_active', {'id': record.id}) }}">
       <input
           type="submit"
