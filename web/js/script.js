@@ -8,4 +8,8 @@ $(function() {
             $(this).closest('form').submit();
         }
     });
+
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#record_content').focus();
+    });
 });
