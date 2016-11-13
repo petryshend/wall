@@ -1,7 +1,7 @@
 <?php
-
 namespace ApiBundle\Controller;
 
+use AppBundle\Entity\Record;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,7 +16,21 @@ class RecordController extends Controller
     {
         $records = $this->getDoctrine()->getRepository('AppBundle:Record')->findAll();
 
-        // TODO: serialize this
-        return new JsonResponse('Not yet implemented');
+        $serialized = array_map(function(Record $record) {
+            return $record->jsonSerialize();
+        }, $records);
+
+        return new JsonResponse($serialized);
+    }
+
+    /**
+     * @Route("/record/{id}", name="get_record")
+     * @param int $id
+     * @return Response
+     */
+    public function recordAction(int $id): Response
+    {
+        $record = $this->getDoctrine()->getRepository('AppBundle:Record')->find($id);
+        return new JsonResponse($record->jsonSerialize());
     }
 }

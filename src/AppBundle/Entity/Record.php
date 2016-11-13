@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="record")
  */
-class Record
+class Record implements JsonSerializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -117,5 +118,22 @@ class Record
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'content' => $this->content,
+            'createdAt' => $this->createdAt,
+            'active' => $this->active,
+        ];
     }
 }
