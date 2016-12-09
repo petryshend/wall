@@ -9,10 +9,10 @@
 
   <a href="{{ path('logout') }}" class="btn btn-default">Logout</a>
 
-  {% include '_partial/new_note_modal.html.twig' with {'form': form} %}
+  {% include '_partial/new_record_modal.html.twig' with {'form': form} %}
 
   {% for record in records %}
-    {% include '_partial/note.html.twig' with {'record': record} %}
+    {% include '_partial/record.html.twig' with {'record': record} %}
   {% endfor %}
 
 {% endblock %}

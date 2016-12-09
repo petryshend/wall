@@ -10,7 +10,7 @@ $(function() {
         }
     });
 
-    $('#myModal').on('shown.bs.modal', function() {
+    $('#record-modal').on('shown.bs.modal', function() {
         $('#record_content').focus();
     });
 

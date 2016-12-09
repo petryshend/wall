@@ -1,12 +1,9 @@
 <div class="quote-container">
-  <div class="note {{ record.active ? 'active' : 'inactive' }}">
+  <div class="record {{ record.active ? 'active' : 'inactive' }}">
     {{ record.content|markdown }}
     <div class="created-at">
       {{ record.createdAt|date }}
     </div>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Edit
-    </button>
     <form method="post" action="{{ path('record_toggle_active', {'id': record.id}) }}">
       <input
           type="submit"
