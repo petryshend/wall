@@ -1,3 +1,7 @@
+.container {
+    margin-top: 20px;
+}
+
 [class*='close-'] {
     color: #777;
     font: 14px/100% arial, sans-serif;

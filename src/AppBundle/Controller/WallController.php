@@ -32,21 +32,6 @@ class WallController extends Controller
 
     /**
      * @Route(
-     *     "/record/{id}",
-     *     name="view_record",
-     *     requirements={"id": "\d+"}
-     * )
-     * @param int $id
-     * @return Response
-     */
-    public function viewRecordAction(int $id): Response
-    {
-        $record = $this->getDoctrine()->getRepository('AppBundle:Record')->find($id);
-        return $this->render('record.html.twig', ['record' => $record]);
-    }
-
-    /**
-     * @Route(
      *     "/record/create",
      *     name="record_create"
      * )
@@ -56,17 +41,23 @@ class WallController extends Controller
     public function createAction(Request $request): Response
     {
         $record = new Record();
+        return $this->handleRecordView($request, $record);
+    }
 
-        $form = $this->createForm(RecordType::class, $record);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $record = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($record);
-            $em->flush();
-            return $this->redirectToRoute('home');
-        }
-        return $this->render('create_record.html.twig', ['form' => $form->createView()]);
+    /**
+     * @Route(
+     *     "/record/{id}/update",
+     *     name="record_update",
+     *     requirements={"id": "\d+"}
+     * )
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function updateRecordAction(Request $request, int $id): Response
+    {
+        $record = $this->getDoctrine()->getRepository('AppBundle:Record')->find($id);
+        return $this->handleRecordView($request, $record);
     }
 
     /**
@@ -119,5 +110,19 @@ class WallController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('home');
+    }
+
+    private function handleRecordView(Request $request, Record $record): Response
+    {
+        $form = $this->createForm(RecordType::class, $record);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $record = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($record);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('record_content.html.twig', ['form' => $form->createView()]);
     }
 }

@@ -4,6 +4,7 @@
     <div class="created-at">
       {{ record.createdAt|date }}
     </div>
+    <a href="{{ path('record_update', {'id': record.id}) }}">Edit record</a>
     <form method="post" action="{{ path('record_toggle_active', {'id': record.id}) }}">
       <input
           type="submit"
