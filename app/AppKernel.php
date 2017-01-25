@@ -27,10 +27,6 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
-        if ($this->getEnvironment() === 'prod') {
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-        }
-
         return $bundles;
     }
 

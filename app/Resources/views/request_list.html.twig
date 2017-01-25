@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for r in callback_requests %}
+        <table>
+            <tbody>
+            <tr>
+                <td>Id:</td>
+                <td>{{ r.id }}</td>
+            </tr>
+            <tr>
+                <td>time:</td>
+                <td>{{ r.time|date }}</td>
+            </tr>
+            <tr>
+                <td>Ip:</td>
+                <td>{{ r.ip }}</td>
+            </tr>
+            <tr>
+                <td>Content:</td>
+                <td>{{ r.content }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+    {% endfor %}
+{% endblock %}

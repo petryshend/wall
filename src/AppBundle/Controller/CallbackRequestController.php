@@ -40,7 +40,6 @@ class CallbackRequestController extends Controller
             return $a->getId() < $b->getId();
         });
 
-        dump($callBackRequests);
-        return new Response();
+        return $this->render('request_list.html.twig', ['callback_requests' => $callBackRequests]);
     }
 }
