@@ -32,6 +32,7 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/request, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/request_list, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/make_request, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
 
     encoders:

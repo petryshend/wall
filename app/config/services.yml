@@ -12,3 +12,7 @@ services:
     public: false
     tags:
      - { name: twig.extension }
+
+  keyword_request_service:
+    class: ES\KeywordPerformance\AuthorityLabs\KeywordRequestService
+    arguments: ['%authority_labs.delayed_queue_url%', '%authority_labs.immediate_queue_url%']

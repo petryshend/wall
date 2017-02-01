@@ -1,0 +1,5 @@
+parameters:
+    authority_labs.api_token: jeHLVxyDspSZMKBpmqaj
+    authority_labs.callback_url: http://petryshend.com/request
+    authority_labs.delayed_queue_url: http://api.authoritylabs.com/keywords
+    authority_labs.immediate_queue_url: http://api.authoritylabs.com/keywords/priority
