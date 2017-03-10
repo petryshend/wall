@@ -28,11 +28,7 @@ class CallbackRequestController extends Controller
     public function requestAction(Request $request): Response
     {
         $callbackRequest = new CallbackRequest();
-        $s = '';
-        foreach ($request->request->all() as $index => $val) {
-            $s .= $index . ' : ' . $val . '\n';
-        }
-        $callbackRequest->setContent($s);
+        $callbackRequest->setContent($request->get('json_callback'));
         $callbackRequest->setIp($request->getClientIp());
         $callbackRequest->setTime(new \DateTime('now'));
 
