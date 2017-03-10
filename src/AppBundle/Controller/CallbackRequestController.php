@@ -28,11 +28,11 @@ class CallbackRequestController extends Controller
     public function requestAction(Request $request): Response
     {
         $callbackRequest = new CallbackRequest();
-        $data = $request->request->all();
-        ob_start();
-        var_dump($data);
-        $res = ob_get_clean();
-        $callbackRequest->setContent($data);
+        $s = '';
+        foreach ($request->request->all() as $index => $val) {
+            $s .= $index . ' : ' . $val . '\n';
+        }
+        $callbackRequest->setContent($s);
         $callbackRequest->setIp($request->getClientIp());
         $callbackRequest->setTime(new \DateTime('now'));
 
