@@ -27,14 +27,15 @@ class CallbackRequestController extends Controller
      */
     public function requestAction(Request $request): Response
     {
-//        $callbackRequest = new CallbackRequest();
+        $callbackRequest = new CallbackRequest();
 //        $callbackRequest->setContent(json_encode($request->request->all()));
-//        $callbackRequest->setIp($request->getClientIp());
-//        $callbackRequest->setTime(new \DateTime('now'));
-//
-//        $manager = $this->getDoctrine()->getManager();
-//        $manager->persist($callbackRequest);
-//        $manager->flush();
+        $callbackRequest->setContent(json_encode($request->getContent()));
+        $callbackRequest->setIp($request->getClientIp());
+        $callbackRequest->setTime(new \DateTime('now'));
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($callbackRequest);
+        $manager->flush();
 
         $jsonCallbackUrl = $request->get('json_callback');
         $result = $this->httpClient->request('GET', $jsonCallbackUrl);
