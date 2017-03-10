@@ -29,7 +29,7 @@ class CallbackRequestController extends Controller
     {
         $callbackRequest = new CallbackRequest();
 //        $callbackRequest->setContent(json_encode($request->request->all()));
-        $callbackRequest->setContent(json_encode($request->getContent()));
+        $callbackRequest->setContent(json_decode($request->getContent()));
         $callbackRequest->setIp($request->getClientIp());
         $callbackRequest->setTime(new \DateTime('now'));
 
